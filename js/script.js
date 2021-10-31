@@ -11,15 +11,12 @@ class Background {
         this.speed = gameSpeed * this.speedChange;
     }
 
-    update(){ 
-        this.speed = gameSpeed * this.speedChange;
-        if (this.x <= -this.width){
+    draw(){
+        if (this.x <= -canvasW){
             this.x = 0;
         }
         this.x = Math.floor(this.x - this.speed);
-    }
 
-    draw(){
         ctx.drawImage(this.image,this.x,this.y, this.width, this.height);
         ctx.drawImage(this.image,this.x + this.width,this.y, this.width, this.height);
     }
@@ -36,7 +33,6 @@ const bgImages = [layer6,layer5,layer4,layer3,layer2,layer1]
 function update(){
     ctx.clearRect(0,0,canvasW,canvasH)
     bgImages.forEach(e =>{
-        e.update();
         e.draw();
     })
     requestAnimationFrame(update)
